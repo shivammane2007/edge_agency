@@ -88,7 +88,7 @@ const ServicesGrid: React.FC = () => {
 
               <span className="text-[#ff7b72]">const</span> <span className="text-[#d2a8ff]">Component</span> = () {'=>'} (
                 <span className="text-[#79c0ff]">{'<'}div{'>'}</span>
-                  Hello, True Hives!
+                  Hello, Edge Agency!
                 <span className="text-[#79c0ff]">{'<'}/div{'>'}</span>
               );
             </code></pre>

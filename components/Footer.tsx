@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center mt-16 border-t border-black/10 dark:border-white/10 pt-8">
-          <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} True Hives. All rights reserved.</p>
+          <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Edge Agency. All rights reserved.</p>
           <div className="flex items-center space-x-4 mt-4 md:mt-0">
             {socialLinks.map(({ Icon, href }, index) => (
               <a key={index} href={href} className="text-gray-400 hover:text-black dark:hover:text-white transition-colors">

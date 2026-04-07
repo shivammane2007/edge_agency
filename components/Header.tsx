@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           }
         `}
       >
-        <div className="font-bold text-lg tracking-tighter">True Hives</div>
+        <div className="font-bold text-lg tracking-tighter">Edge Agency</div>
         <nav className="hidden md:flex items-center bg-gray-100/80 dark:bg-gray-900/80 p-1 rounded-full ring-1 ring-black/5 dark:ring-white/5">
           {navLinks.map((link) => (
             <a
