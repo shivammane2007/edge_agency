@@ -1,66 +1,59 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { DockDemo } from './ui/dock-demo';
 
 interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 150) {
+      setHidden(true); // scrolling down
+    } else {
+      setHidden(false); // scrolling up
+    }
+  });
+
+  const scrolled = scrollY.get() > 10;
 
   const navLinks = ["Work", "Services", "Pricing", "FAQ"];
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'top-4' : 'top-0'
-      }`}
-    >
-      <div
-        className={`
-          container mx-auto max-w-5xl flex items-center justify-between p-2
-          transition-all duration-300
-          ${
-            scrolled
-              ? 'bg-black/50 backdrop-blur-lg rounded-full ring-1 ring-white/10'
-              : 'bg-transparent'
-          }
-        `}
+    <>
+      <motion.header
+        variants={{
+          visible: { y: 0, opacity: 1 },
+          hidden: { y: -100, opacity: 0 }
+        }}
+        initial="visible"
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed top-4 md:top-6 left-0 right-0 z-50 px-4 pointer-events-none"
       >
-        <div className="font-bold text-lg tracking-tighter">Edge Agency</div>
-        <nav className="hidden md:flex items-center bg-gray-900/80 p-1 rounded-full ring-1 ring-white/5">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="px-4 py-1.5 text-sm font-medium text-gray-300 hover:text-white transition-colors"
-            >
-              {link}
-            </a>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-4 py-2 text-sm font-semibold rounded-full bg-white text-black"
-          >
-            Book a Call
-          </motion.button>
+        <div className="container mx-auto flex items-center justify-between">
+          {/* Brand Logo */}
+          <div className="font-black text-lg md:text-2xl tracking-tighter pointer-events-auto bg-black/50 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-white/10 shadow-2xl shrink-0">
+            Edge Agency
+          </div>
+
+          {/* Desktop Dock - Centered at top */}
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+            <DockDemo tooltipSide="bottom" />
+          </div>
+
+          {/* Mobile Dock - Right side top */}
+          <div className="md:hidden pointer-events-auto">
+            <DockDemo tooltipSide="bottom" />
+          </div>
         </div>
-      </div>
-    </motion.header>
+      </motion.header>
+
+    </>
   );
 };
 

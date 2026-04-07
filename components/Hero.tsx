@@ -68,7 +68,7 @@ const Hero3DCard = () => {
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32 pb-16 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32 pb-16 overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video

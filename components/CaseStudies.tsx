@@ -24,13 +24,13 @@ const ParallaxImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
 
 const CaseStudies: React.FC = () => {
   const caseStudies = [
-    { src: "https://picsum.photos/seed/case1/1600/1200", alt: "Case Study 1" },
-    { src: "https://picsum.photos/seed/case2/1600/1200", alt: "Case Study 2" },
-    { src: "https://picsum.photos/seed/case3/1600/1200", alt: "Case Study 3" },
+    { src: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600&h=1200", alt: "Modern Technology Infrastructure" },
+    { src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600&h=1200", alt: "Minimalist Workspace Design" },
+    { src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1600&h=1200", alt: "Futuristic AI Interface" },
   ];
 
   return (
-    <section className="container mx-auto max-w-6xl px-4 py-16 space-y-8">
+    <section id="work" className="container mx-auto max-w-6xl px-4 py-16 space-y-8">
       {caseStudies.map((study, index) => (
         <ParallaxImage key={index} src={study.src} alt={study.alt} />
       ))}
