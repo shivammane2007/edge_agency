@@ -6,6 +6,7 @@ import WorkMarquee from './components/WorkMarquee';
 import ServicesGrid from './components/ServicesGrid';
 import CaseStudies from './components/CaseStudies';
 import Pricing from './components/Pricing';
+import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 const App: React.FC = () => {
 
@@ -37,6 +38,7 @@ const App: React.FC = () => {
         <ServicesGrid />
         <CaseStudies />
         <Pricing />
+        <FAQSection />
       </main>
       <Footer />
     </div>
