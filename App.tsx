@@ -1,5 +1,6 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import WorkMarquee from './components/WorkMarquee';
@@ -8,40 +9,47 @@ import CaseStudies from './components/CaseStudies';
 import Pricing from './components/Pricing';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
+import ContactPage from './components/Contact';
+
 const App: React.FC = () => {
+  const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
-    // Apply dark theme class to document root
     document.documentElement.classList.add('dark');
-    
-    // Basic smooth scroll for anchor links
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         if (targetId) {
-          document.querySelector(targetId)?.scrollIntoView({
-            behavior: 'smooth'
-          });
+          document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
   }, []);
 
   return (
-    <div className="bg-[#0A0A0A] text-white transition-colors duration-500">
-      <div className="fixed inset-0 z-[-1] bg-grid-pattern-dark"></div>
-      <Header />
-      <main>
-        <Hero />
-        <WorkMarquee />
-        <ServicesGrid />
-        <CaseStudies />
-        <Pricing />
-        <FAQSection />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <AnimatePresence>
+        {contactOpen && (
+          <ContactPage onClose={() => setContactOpen(false)} />
+        )}
+      </AnimatePresence>
+
+      <div className="bg-[#0A0A0A] text-white transition-colors duration-500">
+        <div className="fixed inset-0 z-[-1] bg-grid-pattern-dark" />
+        <Header onOpenContact={() => setContactOpen(true)} />
+        <main>
+          <Hero />
+          <WorkMarquee />
+          <ServicesGrid />
+          <CaseStudies />
+          <Pricing />
+          <FAQSection />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 

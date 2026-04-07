@@ -4,9 +4,10 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { DockDemo } from './ui/dock-demo';
 
 interface HeaderProps {
+  onOpenContact: () => void;
 }
 
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC<HeaderProps> = ({ onOpenContact }) => {
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
 
@@ -43,12 +44,12 @@ const Header: React.FC<HeaderProps> = () => {
 
           {/* Desktop Dock - Right side top */}
           <div className="hidden md:block pointer-events-auto">
-            <DockDemo tooltipSide="bottom" />
+            <DockDemo tooltipSide="bottom" onOpenContact={onOpenContact} />
           </div>
 
           {/* Mobile Dock - Right side top */}
           <div className="md:hidden pointer-events-auto">
-            <DockDemo tooltipSide="bottom" />
+            <DockDemo tooltipSide="bottom" onOpenContact={onOpenContact} />
           </div>
         </div>
       </motion.header>

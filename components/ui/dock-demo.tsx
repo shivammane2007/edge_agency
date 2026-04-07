@@ -8,7 +8,12 @@ import {
   Phone
 } from "lucide-react"
 
-function DockDemo({ tooltipSide = "top" }: { tooltipSide?: "top" | "bottom" }) {
+interface DockDemoProps {
+  tooltipSide?: "top" | "bottom";
+  onOpenContact?: () => void;
+}
+
+function DockDemo({ tooltipSide = "top", onOpenContact }: DockDemoProps) {
   const items = [
     { 
       icon: Home, 
@@ -38,8 +43,8 @@ function DockDemo({ tooltipSide = "top" }: { tooltipSide?: "top" | "bottom" }) {
     { 
       icon: Phone, 
       label: "Book a Call",
-      className: "bg-white/10 rounded-full ml-2", // highlight the CTA
-      onClick: () => alert("Booking functionality coming soon!")
+      className: "bg-white/10 rounded-full ml-2",
+      onClick: () => onOpenContact?.()
     }
   ]
 
@@ -52,4 +57,4 @@ function DockDemo({ tooltipSide = "top" }: { tooltipSide?: "top" | "bottom" }) {
   )
 }
 
-export { DockDemo } 
+export { DockDemo }
