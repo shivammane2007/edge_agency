@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 type Plan = 'monthly' | 'quarterly';
 
 interface PricingProps {
-  theme: 'light' | 'dark';
 }
 
 const pricingData = {
@@ -21,24 +20,24 @@ const pricingData = {
   ],
 };
 
-const Pricing: React.FC<PricingProps> = ({ theme }) => {
+const Pricing: React.FC<PricingProps> = () => {
   const [plan, setPlan] = useState<Plan>('monthly');
 
   return (
     <section id="pricing" className="container mx-auto max-w-6xl px-4 py-24">
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Simple, transparent pricing.</h2>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400">Choose the plan that's right for you. Pause or cancel anytime.</p>
+        <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-400">Choose the plan that's right for you. Pause or cancel anytime.</p>
       </div>
 
       <div className="flex justify-center mb-10">
-        <div className="relative flex items-center p-1 rounded-full bg-gray-100 dark:bg-gray-900 ring-1 ring-black/5 dark:ring-white/10">
-          <button onClick={() => setPlan('monthly')} className={`relative z-10 px-6 py-2 text-sm font-semibold rounded-full transition-colors ${plan === 'monthly' ? 'text-black dark:text-white' : 'text-gray-500 hover:text-black dark:hover:text-white'}`}>Monthly</button>
-          <button onClick={() => setPlan('quarterly')} className={`relative z-10 px-6 py-2 text-sm font-semibold rounded-full transition-colors ${plan === 'quarterly' ? 'text-black dark:text-white' : 'text-gray-500 hover:text-black dark:hover:text-white'}`}>Quarterly</button>
+        <div className="relative flex items-center p-1 rounded-full bg-gray-900 ring-1 ring-white/10">
+          <button onClick={() => setPlan('monthly')} className={`relative z-10 px-6 py-2 text-sm font-semibold rounded-full transition-colors ${plan === 'monthly' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Monthly</button>
+          <button onClick={() => setPlan('quarterly')} className={`relative z-10 px-6 py-2 text-sm font-semibold rounded-full transition-colors ${plan === 'quarterly' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Quarterly</button>
           <motion.div
             layout
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="absolute h-[calc(100%-8px)] w-[calc(50%-4px)] top-[4px] bg-white dark:bg-gray-800 rounded-full shadow-sm"
+            className="absolute h-[calc(100%-8px)] w-[calc(50%-4px)] top-[4px] bg-gray-800 rounded-full shadow-sm"
             animate={{ x: plan === 'monthly' ? '4px' : 'calc(100% - 4px)' }}
           />
         </div>
@@ -55,9 +54,9 @@ const Pricing: React.FC<PricingProps> = ({ theme }) => {
             whileHover={{ scale: 1.05, y: -8, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
             className={`relative p-8 rounded-3xl cursor-pointer overflow-hidden ${
               card.pro
-                ? `bg-gray-200/50 dark:bg-gray-900/80 ${theme === 'dark' ? 'apple-glow-dark' : 'apple-glow-light'}`
-                : 'bg-gray-100/50 dark:bg-gray-900/50'
-            } ring-1 ring-black/5 dark:ring-white/10 backdrop-blur-sm`}
+                ? `bg-gray-900/80 apple-glow-dark`
+                : 'bg-gray-900/50'
+            } ring-1 ring-white/10 backdrop-blur-sm`}
           >
             {card.pro && (
               <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
@@ -73,12 +72,12 @@ const Pricing: React.FC<PricingProps> = ({ theme }) => {
             </p>
             <button className={`w-full mt-8 py-3 font-semibold rounded-full transition-colors ${
               card.pro
-                ? 'bg-black dark:bg-white text-white dark:text-black'
-                : 'bg-white dark:bg-gray-800 text-black dark:text-white ring-1 ring-inset ring-black/10 dark:ring-white/10'
+                ? 'bg-white text-black'
+                : 'bg-gray-800 text-white ring-1 ring-inset ring-white/10'
             }`}>
               {card.price.startsWith('$') ? 'Get Started' : 'Contact Us'}
             </button>
-            <ul className="mt-8 space-y-3 text-sm text-gray-600 dark:text-gray-400">
+            <ul className="mt-8 space-y-3 text-sm text-gray-400">
               {card.features.map(feature => (
                 <li key={feature} className="flex items-center">
                   <svg className="w-4 h-4 mr-2 text-indigo-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>

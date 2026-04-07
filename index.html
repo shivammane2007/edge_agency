@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,12 +15,8 @@
         font-family: 'Inter', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-      }
-      .bg-grid-pattern-light {
-        background-image:
-          linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
-        background-size: 2rem 2rem;
+        background-color: #0A0A0A;
+        color: white;
       }
       .bg-grid-pattern-dark {
         background-image:
@@ -37,16 +33,6 @@
         filter: blur(20px);
         z-index: -1;
         opacity: 0.3;
-      }
-      .apple-glow-light::before {
-        content: '';
-        position: absolute;
-        inset: -1px;
-        border-radius: 1.05rem; /* slightly larger than card's border-radius */
-        background: conic-gradient(from 180deg at 50% 50%, #d1d1d1 -45deg, #ffffff 45deg, #d1d1d1 135deg, #ffffff 225deg, #d1d1d1 315deg);
-        filter: blur(20px);
-        z-index: -1;
-        opacity: 0.8;
       }
       .marquee-content {
         animation: marquee 30s linear infinite;

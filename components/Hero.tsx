@@ -43,16 +43,16 @@ const Hero3DCard = () => {
     >
       <div 
         style={{ transform: "translateZ(20px)" }}
-        className="absolute inset-0 bg-white/5 dark:bg-black/20 rounded-2xl ring-1 ring-black/10 dark:ring-white/10 backdrop-blur-lg shadow-2xl dark:shadow-black/50"
+        className="absolute inset-0 bg-black/20 rounded-2xl ring-1 ring-white/10 backdrop-blur-lg shadow-black/50"
       ></div>
       
-      <div style={{ transform: "translateZ(60px)" }} className="absolute top-6 left-6 w-16 h-4 bg-gray-300/50 dark:bg-gray-700/50 rounded-full"></div>
-      <div style={{ transform: "translateZ(50px)" }} className="absolute top-14 left-6 w-32 h-2 bg-gray-300/50 dark:bg-gray-700/50 rounded-full"></div>
-      <div style={{ transform: "translateZ(40px)" }} className="absolute top-20 left-6 w-24 h-2 bg-gray-300/50 dark:bg-gray-700/50 rounded-full"></div>
+      <div style={{ transform: "translateZ(60px)" }} className="absolute top-6 left-6 w-16 h-4 bg-gray-700/50 rounded-full"></div>
+      <div style={{ transform: "translateZ(50px)" }} className="absolute top-14 left-6 w-32 h-2 bg-gray-700/50 rounded-full"></div>
+      <div style={{ transform: "translateZ(40px)" }} className="absolute top-20 left-6 w-24 h-2 bg-gray-700/70 rounded-full"></div>
       
       <motion.div 
          style={{ transform: "translateZ(80px)" }}
-         className="absolute bottom-6 right-6 w-20 h-8 bg-black dark:bg-white rounded-lg flex items-center justify-center text-white dark:text-black text-xs font-bold"
+         className="absolute bottom-6 right-6 w-20 h-8 bg-white rounded-lg flex items-center justify-center text-black text-xs font-bold"
       >
         Launch
       </motion.div>
@@ -76,11 +76,11 @@ const Hero: React.FC = () => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-30 dark:opacity-20"
+          className="w-full h-full object-cover opacity-20"
         >
           <source src="/videos/galaxy.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/30 to-white/50 dark:from-black/50 dark:via-black/30 dark:to-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50"></div>
       </div>
       
       <motion.div
@@ -92,21 +92,21 @@ const Hero: React.FC = () => {
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-tight">
           Design. Dev. Intelligence.
         </h1>
-        <p className="mt-6 max-w-xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-400">
+        <p className="mt-6 max-w-xl mx-auto text-lg md:text-xl text-gray-400">
           We build digital ecosystems for the future. A productized agency for teams that need to scale their design & development without the overhead.
         </p>
         <div className="mt-10 flex items-center justify-center gap-4">
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(255, 255, 255, 0.2)" }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-3 font-semibold rounded-full bg-black dark:bg-white text-white dark:text-black"
+            className="px-6 py-3 font-semibold rounded-full bg-white text-black"
           >
             View Pricing
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-3 font-semibold rounded-full bg-white/50 dark:bg-black/50 backdrop-blur-sm ring-1 ring-black/10 dark:ring-white/10"
+            className="px-6 py-3 font-semibold rounded-full bg-black/50 backdrop-blur-sm ring-1 ring-white/10"
           >
             See Our Work
           </motion.button>

@@ -8,7 +8,7 @@ const logos = [
 const MarqueeContent = () => (
     <div className="flex marquee-content space-x-16">
       {logos.map((logo, index) => (
-        <span key={index} className="text-xl font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+        <span key={index} className="text-xl font-medium text-gray-400 whitespace-nowrap">
           {logo}
         </span>
       ))}
