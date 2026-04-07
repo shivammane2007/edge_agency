@@ -41,8 +41,8 @@ const Header: React.FC<HeaderProps> = () => {
             Edge Agency
           </div>
 
-          {/* Desktop Dock - Centered at top */}
-          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+          {/* Desktop Dock - Right side top */}
+          <div className="hidden md:block pointer-events-auto">
             <DockDemo tooltipSide="bottom" />
           </div>
 
