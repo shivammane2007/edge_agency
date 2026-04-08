@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
@@ -11,6 +10,7 @@ import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import ContactPage from './components/Contact';
 import QuoteSection from './components/QuoteSection';
+import ScrollTriggerRadiusDemo from './components/ScrollTriggerRadiusDemo';
 
 const App: React.FC = () => {
   const [contactOpen, setContactOpen] = useState(false);
@@ -18,6 +18,8 @@ const App: React.FC = () => {
   useEffect(() => {
     document.documentElement.classList.add('dark');
 
+    // Remove manual smooth scroll as Lenis handles it better
+    /*
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
         e.preventDefault();
@@ -27,6 +29,7 @@ const App: React.FC = () => {
         }
       });
     });
+    */
   }, []);
 
   return (
@@ -45,6 +48,7 @@ const App: React.FC = () => {
           <WorkMarquee />
           <ServicesGrid />
           <QuoteSection />
+          <ScrollTriggerRadiusDemo />
           <CaseStudies />
           <Pricing />
           <FAQSection />

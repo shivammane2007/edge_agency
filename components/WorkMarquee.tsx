@@ -46,6 +46,22 @@ const projects = [
     size: "lg:col-span-1",
   },
   {
+    tag: "Spatial · AR",
+    title: "Aether Spatial",
+    desc: "Next-gen spatial computing interface for architectural visualization. Implemented with Three.js and real-time raytracing.",
+    metrics: ["Volumetric UI", "WebXR", "10 wks"],
+    accent: "from-white/[0.03] to-white/[0.01]",
+    size: "lg:col-span-1",
+  },
+  {
+    tag: "Bio-Tech · Data",
+    title: "Neural Nexus",
+    desc: "Advanced brain-computer interface dashboard for neural data collection. High-throughput data streaming and 3D mapping.",
+    metrics: ["8ms Latency", "3D Mapping", "16 wks"],
+    accent: "from-white/[0.03] to-white/[0.01]",
+    size: "lg:col-span-1",
+  },
+  {
     tag: "Motion · Identity",
     title: "Orion Studio",
     desc: "Brand identity, motion guidelines, and a Framer-powered portfolio for a LA-based creative studio.",
@@ -75,7 +91,7 @@ const WorkMarquee: React.FC = () => {
   return (
     <section id="work" className="py-24 overflow-hidden border-t border-white/5">
 
-      {/* ── Section header ── */}
+      {/* ─── Section header ─── */}
       <div className="mx-auto max-w-7xl px-6 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <p className="text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-3">
@@ -92,13 +108,13 @@ const WorkMarquee: React.FC = () => {
         </p>
       </div>
 
-      {/* ── Marquee ── */}
+      {/* ─── Marquee ─── */}
       <div className="relative flex items-center mb-20 opacity-30 select-none grayscale">
         <MarqueeContent />
         <MarqueeContent />
       </div>
 
-      {/* ── Project grid ── */}
+      {/* ─── Project grid ─── */}
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-24">
           {projects.map((p, i) => (
@@ -162,7 +178,7 @@ const WorkMarquee: React.FC = () => {
           ))}
         </div>
 
-        {/* ── Stats strip ── */}
+        {/* ─── Stats strip ─── */}
         <div className="border-t border-white/5 pt-16 grid grid-cols-2 md:grid-cols-4 gap-12 mb-12">
           {stats.map((s, i) => (
             <motion.div
