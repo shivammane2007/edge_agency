@@ -10,6 +10,7 @@ import Pricing from './components/Pricing';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import ContactPage from './components/Contact';
+import QuoteSection from './components/QuoteSection';
 
 const App: React.FC = () => {
   const [contactOpen, setContactOpen] = useState(false);
@@ -43,6 +44,7 @@ const App: React.FC = () => {
           <Hero />
           <WorkMarquee />
           <ServicesGrid />
+          <QuoteSection />
           <CaseStudies />
           <Pricing />
           <FAQSection />

@@ -1,101 +1,260 @@
-import React from 'react';
-// Fix: Import `Variants` type from framer-motion and apply it to `cardVariants`.
-import { motion, Variants } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, Variants } from 'framer-motion';
+import { 
+  ArrowUpRight, 
+  Cpu, 
+  Code2, 
+  Layout, 
+  Zap, 
+  Terminal,
+  MousePointer2,
+  BarChart3
+} from 'lucide-react';
+import DotPattern from './ui/dot-pattern-1';
 
 const cardVariants: Variants = {
-  offscreen: {
-    y: 50,
-    opacity: 0
-  },
-  onscreen: {
-    y: 0,
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
     opacity: 1,
+    y: 0,
     transition: {
-      type: "spring",
-      bounce: 0.4,
-      duration: 0.8
+      delay: 0.1 * i,
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1]
     }
-  }
+  })
 };
 
-const GridCard: React.FC<{ className?: string; children: React.ReactNode; }> = ({ className = '', children }) => (
-  <motion.div
-    variants={cardVariants}
-    className={`relative overflow-hidden rounded-3xl p-8 bg-gray-900/50 ring-1 ring-white/10 transition-all duration-300 hover:scale-[1.02] hover:ring-white/20 ${className}`}
-  >
-    {children}
-  </motion.div>
-);
+const SpotlightCard: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}> = ({ children, className = "", delay = 0 }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={onMouseMove}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      custom={delay}
+      variants={cardVariants}
+      className={`group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A0A0A] p-8 transition-colors hover:border-white/[0.15] ${className}`}
+    >
+      {/* Dot Pattern Texture */}
+      <DotPattern
+        width={8}
+        height={8}
+        cx={1}
+        cy={1}
+        cr={1}
+        className="fill-white/[0.02] group-hover:fill-white/[0.04] transition-colors [mask-image:radial-gradient(400px_circle_at_center,white,transparent)]"
+      />
+
+      {/* Technical Corners (Drafting Style) */}
+      <div className="absolute -left-[1px] -top-[1px] h-3 w-3 border-l border-t border-white/20 group-hover:border-white/50 transition-colors" />
+      <div className="absolute -right-[1px] -top-[1px] h-3 w-3 border-r border-t border-white/20 group-hover:border-white/50 transition-colors" />
+      <div className="absolute -left-[1px] -bottom-[1px] h-3 w-3 border-l border-b border-white/20 group-hover:border-white/50 transition-colors" />
+      <div className="absolute -right-[1px] -bottom-[1px] h-3 w-3 border-r border-b border-white/20 group-hover:border-white/50 transition-colors" />
+
+      {/* Corner accent blocks */}
+      <div className="absolute -left-[4px] -top-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+      <div className="absolute -right-[4px] -top-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+      <div className="absolute -left-[4px] -bottom-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+      <div className="absolute -right-[4px] -bottom-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+
+      {/* Spotlight effect */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          background: useTransform(
+            [mouseX, mouseY],
+            ([x, y]) => `radial-gradient(600px circle at ${x}px ${y}px, rgba(255,255,255,0.06), transparent 40%)`
+          ),
+        }}
+      />
+      
+      <div className="relative z-10 h-full">
+        {children}
+      </div>
+    </motion.div>
+  );
+};
 
 const ServicesGrid: React.FC = () => {
   return (
-    <motion.section 
-      id="services"
-      className="container mx-auto max-w-6xl px-4 py-16"
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ staggerChildren: 0.2 }}
-    >
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Everything you need.</h2>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-400">One subscription. Unlimited scale.</p>
-      </div>
+    <section id="services" className="relative py-24 md:py-32 overflow-hidden bg-[#0A0A0A]">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.02] blur-[120px] rounded-full pointer-events-none" />
+      
+      <div className="container mx-auto max-w-7xl px-6">
+        {/* Header */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-4"
+          >
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">
+              Capabilities
+            </span>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+              <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-white leading-none">
+                Elite solutions.<br />
+                <span className="text-gray-500">Edge perspective.</span>
+              </h2>
+              <p className="max-w-xs text-gray-500 text-sm leading-relaxed mb-2">
+                We bridge the gap between imagination and execution with cutting-edge 
+                technology and bespoke design systems.
+              </p>
+            </div>
+          </motion.div>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <GridCard className="md:col-span-2">
-          <h3 className="text-2xl font-bold">UI/UX Design</h3>
-          <p className="mt-2 text-gray-400">From wireframes to pixel-perfect designs, we create intuitive and beautiful interfaces.</p>
-          <div className="mt-8 h-48 rounded-xl bg-black/50 p-4 ring-1 ring-inset ring-white/10">
-            <div className="flex space-x-2">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            </div>
-            <div className="mt-4 h-2 w-24 bg-gray-700 rounded-full"></div>
-            <div className="mt-2 h-2 w-32 bg-gray-700 rounded-full"></div>
-            <div className="mt-4 flex gap-2">
-                <div className="flex-1 h-16 bg-gray-700 rounded-lg"></div>
-                <div className="flex-1 h-16 bg-gray-700 rounded-lg"></div>
-            </div>
-          </div>
-        </GridCard>
-        
-        <GridCard>
-          <h3 className="text-2xl font-bold">AI Automation</h3>
-          <p className="mt-2 text-gray-400">Integrate intelligent systems to automate workflows and enhance capabilities.</p>
-          <div className="mt-8 h-48 flex items-center justify-center">
-            <div className="relative w-24 h-24">
-              <motion.div 
-                className="absolute inset-0 rounded-full bg-indigo-500/20"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              ></motion.div>
-              <div className="absolute inset-2 rounded-full bg-indigo-500/30"></div>
-              <div className="absolute inset-4 rounded-full bg-indigo-500 flex items-center justify-center">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 auto-rows-fr">
+          
+          {/* UI/UX Design - Large Focal Card */}
+          <SpotlightCard delay={1} className="md:col-span-2 md:row-span-2 flex flex-col justify-between min-h-[400px]">
+            <div>
+              <div className="h-12 w-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                <Layout className="w-6 h-6 text-white" />
               </div>
+              <h3 className="text-2xl md:text-3xl font-black tracking-tight text-white mb-3">
+                Product Design
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+                Crafting immersive digital experiences that convert. We don't just design interfaces; 
+                we architect user journeys that feel native to your brand.
+              </p>
             </div>
-          </div>
-        </GridCard>
+            
+            {/* Visual Element: Floating UI Elements */}
+            <div className="mt-8 relative h-48 w-full overflow-hidden rounded-xl bg-white/[0.02] border border-white/5 p-4 flex items-center justify-center">
+               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+               <motion.div 
+                 animate={{ y: [0, -10, 0] }}
+                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                 className="w-4/5 h-3/4 rounded-lg bg-white/5 border border-white/10 p-4 shadow-2xl backdrop-blur-sm"
+               >
+                 <div className="flex gap-2 mb-4">
+                   <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                   <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
+                   <div className="w-2 h-2 rounded-full bg-green-500/50" />
+                 </div>
+                 <div className="space-y-3">
+                   <div className="h-2 w-2/3 bg-white/10 rounded-full" />
+                   <div className="h-2 w-full bg-white/5 rounded-full" />
+                   <div className="h-12 w-full bg-white/5 rounded-lg border border-white/5 mt-4" />
+                 </div>
+               </motion.div>
+            </div>
+          </SpotlightCard>
 
-        <GridCard className="md:col-span-3">
-          <h3 className="text-2xl font-bold">Development</h3>
-          <p className="mt-2 text-gray-400">High-performance web applications built with modern frameworks like React and Next.js.</p>
-          <div className="mt-8 h-48 rounded-xl bg-[#0d1117] font-mono text-sm text-gray-300 p-4 overflow-hidden">
-            <pre><code>
-              <span className="text-[#c9d1d9]">import</span> React <span className="text-[#c9d1d9]">from</span> <span className="text-[#a5d6ff]">'react'</span>;
+          {/* AI Engineering - Wide Card */}
+          <SpotlightCard delay={2} className="md:col-span-2 md:row-span-1 flex flex-col justify-between">
+            <div className="flex justify-between items-start">
+              <div>
+                <div className="h-10 w-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-500">
+                  <Cpu className="w-5 h-5 text-indigo-400" />
+                </div>
+                <h3 className="text-xl font-black tracking-tight text-white mb-2">
+                  AI Engineering
+                </h3>
+                <p className="text-gray-500 text-xs leading-relaxed max-w-xs">
+                  Native integration of LLMs and custom ML models into your 
+                  existing workflows for hyper-efficiency.
+                </p>
+              </div>
+              <Zap className="w-5 h-5 text-yellow-500/20 group-hover:text-yellow-500/80 transition-colors duration-500" />
+            </div>
 
-              <span className="text-[#ff7b72]">const</span> <span className="text-[#d2a8ff]">Component</span> = () {'=>'} (
-                <span className="text-[#79c0ff]">{'<'}div{'>'}</span>
-                  Hello, Edge Agency!
-                <span className="text-[#79c0ff]">{'<'}/div{'>'}</span>
-              );
-            </code></pre>
-          </div>
-        </GridCard>
+            {/* Neural Flow visualization */}
+            <div className="mt-6 flex gap-1 h-3 items-end">
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  animate={{ height: ["20%", "100%", "20%"] }}
+                  transition={{ 
+                    duration: 1.5, 
+                    repeat: Infinity, 
+                    delay: i * 0.05,
+                    ease: "easeInOut" 
+                  }}
+                  className="flex-1 bg-gradient-to-t from-indigo-500/20 to-indigo-500/80 rounded-full"
+                />
+              ))}
+            </div>
+          </SpotlightCard>
+
+          {/* Development - Tall/Small Card */}
+          <SpotlightCard delay={3} className="md:col-span-1 md:row-span-1 flex flex-col justify-between">
+            <div>
+              <Terminal className="w-5 h-5 text-emerald-400 mb-6" />
+              <h3 className="text-xl font-black tracking-tight text-white mb-2">
+                Engineering
+              </h3>
+              <p className="text-gray-500 text-xs leading-relaxed">
+                Clean, scalable codebases built with Next.js and high-performance backends.
+              </p>
+            </div>
+            
+            <motion.div 
+              className="mt-6 font-mono text-[10px] text-emerald-500/40 bg-black/40 p-3 rounded-lg border border-white/5 overflow-hidden"
+            >
+              <code className="block">const edge = () ={">"} true;</code>
+              <code className="block opacity-50">v1.2.0 production</code>
+            </motion.div>
+          </SpotlightCard>
+
+          {/* Growth - Small Card */}
+          <SpotlightCard delay={4} className="md:col-span-1 md:row-span-1 flex flex-col justify-between">
+            <div>
+              <BarChart3 className="w-5 h-5 text-blue-400 mb-6" />
+              <h3 className="text-xl font-black tracking-tight text-white mb-2">
+                Strategy
+              </h3>
+              <p className="text-gray-500 text-xs leading-relaxed">
+                Metric-driven growth strategies to scale your product to new heights.
+              </p>
+            </div>
+            
+            <div className="mt-6 flex items-end gap-1">
+               <motion.div 
+                 initial={{ scaleY: 0.2 }}
+                 whileInView={{ scaleY: 1 }}
+                 transition={{ duration: 1, delay: 0.5 }}
+                 className="flex-1 h-8 bg-white/5 rounded-sm origin-bottom" 
+               />
+               <motion.div 
+                 initial={{ scaleY: 0.4 }}
+                 whileInView={{ scaleY: 0.8 }}
+                 transition={{ duration: 1, delay: 0.6 }}
+                 className="flex-1 h-12 bg-white/10 rounded-sm origin-bottom" 
+               />
+               <motion.div 
+                 initial={{ scaleY: 0.1 }}
+                 whileInView={{ scaleY: 1.2 }}
+                 transition={{ duration: 1, delay: 0.7 }}
+                 className="flex-1 h-10 bg-white/20 rounded-sm origin-bottom" 
+               />
+            </div>
+          </SpotlightCard>
+
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
