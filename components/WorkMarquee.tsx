@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, BarChart2, Globe, Cpu, Layout } from 'lucide-react';
 import DotPattern from './ui/dot-pattern-1';
 
 // ─── Original marquee data & component ───
@@ -19,6 +19,65 @@ const MarqueeContent = () => (
   </div>
 );
 
+// High-fidelity visual components for flagship projects
+const VeritasVisual = () => (
+  <div className="relative w-full h-full min-h-[180px] flex items-center justify-center bg-white/[0.02] rounded-xl border border-white/5 overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent" />
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      className="relative z-10 w-4/5 h-3/4 bg-black/40 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-2xl"
+    >
+      <div className="flex items-center gap-2 mb-4">
+        <div className="w-2 h-2 rounded-full bg-red-400/40" />
+        <div className="w-2 h-2 rounded-full bg-yellow-400/40" />
+        <div className="w-2 h-2 rounded-full bg-green-400/40" />
+      </div>
+      <div className="space-y-3">
+        <div className="h-2 w-full bg-white/5 rounded-full" />
+        <div className="h-2 w-2/3 bg-white/5 rounded-full" />
+        <div className="mt-4 flex items-end gap-1 h-12">
+          {[0.4, 0.7, 0.5, 0.9, 0.6, 0.8].map((h, i) => (
+            <motion.div
+              key={i}
+              initial={{ height: 0 }}
+              whileInView={{ height: `${h * 100}%` }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className="flex-1 bg-indigo-500/30 rounded-t-sm"
+            />
+          ))}
+        </div>
+      </div>
+    </motion.div>
+    {/* Decorative axis lines */}
+    <div className="absolute left-4 top-0 bottom-0 w-[1px] bg-white/5" />
+    <div className="absolute left-0 right-0 bottom-4 h-[1px] bg-white/5" />
+  </div>
+);
+
+const OrionVisual = () => (
+  <div className="relative w-full h-full min-h-[180px] flex items-center justify-center">
+    <div className="relative flex items-center justify-center">
+      <motion.div 
+        animate={{ rotate: 360 }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="w-32 h-32 md:w-40 md:h-40 rounded-full border border-dashed border-white/20"
+      />
+      <motion.div 
+        animate={{ rotate: -360 }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        className="absolute w-20 h-20 md:w-24 md:h-24 rounded-full border border-white/10"
+      />
+      <div className="absolute w-12 h-12 md:w-16 md:h-16 bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl rotate-45 flex items-center justify-center">
+        <Globe className="w-6 h-6 md:w-8 md:h-8 text-white/40 -rotate-45" />
+      </div>
+      {/* Target markers */}
+      <div className="absolute -top-4 -left-4 w-4 h-4 border-l border-t border-white/40" />
+      <div className="absolute -bottom-4 -right-4 w-4 h-4 border-r border-b border-white/40" />
+    </div>
+  </div>
+);
+
 // Project case studies
 const projects = [
   {
@@ -28,6 +87,7 @@ const projects = [
     metrics: ["43% ↓ churn", "200k+ users", "8 wks"],
     accent: "from-white/[0.04] to-white/[0.01]",
     size: "lg:col-span-2",
+    visual: <VeritasVisual />
   },
   {
     tag: "Brand · Web",
@@ -68,6 +128,7 @@ const projects = [
     metrics: ["22 animations", "Framer", "3 wks"],
     accent: "from-white/[0.04] to-white/[0.01]",
     size: "lg:col-span-2",
+    visual: <OrionVisual />
   },
 ];
 
@@ -125,54 +186,72 @@ const WorkMarquee: React.FC = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               variants={fadeUp}
-              className={`group relative bg-[#0A0A0A] border border-white/[0.08] rounded-2xl p-8 flex flex-col justify-between gap-6 cursor-pointer hover:border-white/[0.15] transition-all duration-300 ${p.size}`}
+              className={`group relative bg-[#0A0A0A] border border-white/[0.08] rounded-2xl p-10 md:p-14 transition-all duration-300 ${p.size}`}
             >
-              {/* Dot Pattern Texture */}
-              <DotPattern 
-                width={8} 
-                height={8} 
-                className="fill-white/[0.02] group-hover:fill-white/[0.04] transition-colors [mask-image:radial-gradient(circle_at_top_left,white,transparent,transparent)]" 
-              />
+              <div className={`flex flex-col lg:flex-row h-full gap-10 ${p.size.includes('col-span-2') ? '' : 'flex-col'}`}>
+                
+                {/* Content Side */}
+                <div className="flex-1 flex flex-col justify-between gap-8 relative z-10">
+                  {/* Dot Pattern Texture (Only behind content for clarity) */}
+                  <DotPattern 
+                    width={8} 
+                    height={8} 
+                    className="fill-white/[0.02] group-hover:fill-white/[0.04] transition-colors [mask-image:radial-gradient(circle_at_top_left,white,transparent,transparent)]" 
+                  />
 
-              {/* Technical Corners (Drafting Style) */}
-              <div className="absolute -left-[1px] -top-[1px] h-3 w-3 border-l border-t border-white/20 group-hover:border-white/50 transition-colors" />
-              <div className="absolute -right-[1px] -top-[1px] h-3 w-3 border-r border-t border-white/20 group-hover:border-white/50 transition-colors" />
-              <div className="absolute -left-[1px] -bottom-[1px] h-3 w-3 border-l border-b border-white/20 group-hover:border-white/50 transition-colors" />
-              <div className="absolute -right-[1px] -bottom-[1px] h-3 w-3 border-r border-b border-white/20 group-hover:border-white/50 transition-colors" />
+                  {/* Technical Corners (Drafting Style) - Offset for breathing room */}
+                  <div className="absolute -left-2 -top-2 h-4 w-4 border-l border-t border-white/20 group-hover:border-white/50 transition-colors" />
+                  <div className="absolute -right-2 -top-2 h-4 w-4 border-r border-t border-white/20 group-hover:border-white/50 transition-colors" />
+                  <div className="absolute -left-2 -bottom-2 h-4 w-4 border-l border-b border-white/20 group-hover:border-white/50 transition-colors" />
+                  <div className="absolute -right-2 -bottom-2 h-4 w-4 border-r border-b border-white/20 group-hover:border-white/50 transition-colors" />
 
-              {/* Corner accent blocks */}
-              <div className="absolute -left-[4px] -top-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
-              <div className="absolute -right-[4px] -top-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
-              <div className="absolute -left-[4px] -bottom-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
-              <div className="absolute -right-[4px] -bottom-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+                  {/* Corner accent blocks */}
+                  <div className="absolute -left-[6px] -top-[6px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+                  <div className="absolute -right-[6px] -top-[6px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+                  <div className="absolute -left-[6px] -bottom-[6px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+                  <div className="absolute -right-[6px] -bottom-[6px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+
+                  <div>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-4 block">
+                      {p.tag}
+                    </span>
+                    <h3 className="text-2xl font-black text-white tracking-tight mb-3">
+                      {p.title}
+                    </h3>
+                    <p className="text-sm text-gray-500 leading-relaxed max-w-md">{p.desc}</p>
+                  </div>
+
+                  {/* Metrics */}
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {p.metrics.map((m) => (
+                      <span
+                        key={m}
+                        className="text-[9px] font-black uppercase tracking-[0.1em] border border-white/[0.08] rounded-full px-3 py-1 text-gray-400 bg-white/[0.02]"
+                      >
+                        {m}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Visual Side (Targeted specifically to the blank space) */}
+                {p.visual && (
+                  <div className="flex-1 hidden lg:flex items-center justify-center p-2 relative z-10 border-l border-white/5">
+                    {p.visual}
+                  </div>
+                )}
+              </div>
 
               {/* Arrow */}
-              <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">
+              <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 z-20">
                 <ArrowUpRight className="h-5 w-5 text-white" />
               </div>
 
-              <div className="relative z-10 flex flex-col h-full justify-between gap-6">
-                <div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-4 block">
-                    {p.tag}
-                  </span>
-                  <h3 className="text-2xl font-black text-white tracking-tight mb-3">
-                    {p.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed max-w-md">{p.desc}</p>
-                </div>
-
-                {/* Metrics */}
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {p.metrics.map((m) => (
-                    <span
-                      key={m}
-                      className="text-[9px] font-black uppercase tracking-[0.1em] border border-white/[0.08] rounded-full px-3 py-1 text-gray-400 bg-white/[0.02]"
-                    >
-                      {m}
-                    </span>
-                  ))}
-                </div>
+              {/* Functional Drafting markers */}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-1 pr-1 opacity-20">
+                <div className="h-4 w-[1px] bg-white" />
+                <div className="h-1 w-[1px] bg-white" />
+                <div className="h-1 w-[1px] bg-white" />
               </div>
             </motion.div>
           ))}

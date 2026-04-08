@@ -49,7 +49,7 @@ const SpotlightCard: React.FC<{
       viewport={{ once: true, margin: "-50px" }}
       custom={delay}
       variants={cardVariants}
-      className={`group relative isolate overflow-hidden rounded-[2rem] border border-white/[0.08] p-6 md:p-10 transition-colors hover:border-white/[0.15] ${className}`}
+      className={`group relative isolate overflow-hidden rounded-[2rem] border border-white/[0.08] p-10 md:p-14 transition-colors hover:border-white/[0.15] ${className}`}
     >
       {/* ── Layer -10: Background Color ── */}
       <div className="absolute inset-0 z-[-10] bg-[#0A0A0A]" />
@@ -66,17 +66,17 @@ const SpotlightCard: React.FC<{
           className="fill-white/[0.01] group-hover:fill-white/[0.02] transition-colors [mask-image:radial-gradient(400px_circle_at_center,white,transparent)]"
         />
 
-        {/* Technical Corners (Drafting Style) */}
-        <div className="absolute -left-[1px] -top-[1px] h-3 w-3 border-l border-t border-white/20 group-hover:border-white/50 transition-colors" />
-        <div className="absolute -right-[1px] -top-[1px] h-3 w-3 border-r border-t border-white/20 group-hover:border-white/50 transition-colors" />
-        <div className="absolute -left-[1px] -bottom-[1px] h-3 w-3 border-l border-b border-white/20 group-hover:border-white/50 transition-colors" />
-        <div className="absolute -right-[1px] -bottom-[1px] h-3 w-3 border-r border-b border-white/20 group-hover:border-white/50 transition-colors" />
+        {/* Technical Corners (Drafting Style) - Expanded for breathing room */}
+        <div className="absolute -left-2 -top-2 h-4 w-4 border-l border-t border-white/20 group-hover:border-white/50 transition-colors" />
+        <div className="absolute -right-2 -top-2 h-4 w-4 border-r border-t border-white/20 group-hover:border-white/50 transition-colors" />
+        <div className="absolute -left-2 -bottom-2 h-4 w-4 border-l border-b border-white/20 group-hover:border-white/50 transition-colors" />
+        <div className="absolute -right-2 -bottom-2 h-4 w-4 border-r border-b border-white/20 group-hover:border-white/50 transition-colors" />
 
         {/* Corner accent blocks */}
-        <div className="absolute -left-[4px] -top-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
-        <div className="absolute -right-[4px] -top-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
-        <div className="absolute -left-[4px] -bottom-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
-        <div className="absolute -right-[4px] -bottom-[4px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+        <div className="absolute -left-[6px] -top-[6px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+        <div className="absolute -right-[6px] -top-[6px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+        <div className="absolute -left-[6px] -bottom-[6px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
+        <div className="absolute -right-[6px] -bottom-[6px] h-2 w-2 bg-white/10 group-hover:bg-white/30 transition-colors" />
 
         {/* Spotlight effect */}
         <motion.div
