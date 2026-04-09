@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export const QuoteSection = React.memo(() => {
   return (
-    <section className="relative py-24 bg-[#0A0A0A] overflow-hidden gpu">
+    <section className="relative py-16 md:py-24 bg-[#0A0A0A] overflow-hidden gpu">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
@@ -34,12 +34,12 @@ export const QuoteSection = React.memo(() => {
           <div className="absolute -left-4 -bottom-4 h-8 w-8 border-l border-b border-white/30" />
           <div className="absolute -right-4 -bottom-4 h-8 w-8 border-r border-b border-white/30" />
 
-          <div className="relative z-20 mx-auto max-w-5xl px-8 py-16 md:p-20 xl:py-24 text-center">
-            <p className="text-[10px] uppercase tracking-[0.4em] text-gray-500 mb-8 font-black">
+          <div className="relative z-20 mx-auto max-w-5xl px-8 py-12 md:p-20 lg:p-24 text-center">
+            <p className="text-[10px] uppercase tracking-[0.4em] text-gray-500 mb-6 md:mb-8 font-black">
               Agency Philosophy
             </p>
             
-            <div className="text-3xl md:text-5xl lg:text-7xl font-black tracking-tighter text-white leading-[1.1]">
+            <div className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter text-white leading-[1.1]">
               <div className="flex flex-wrap justify-center gap-x-4">
                 <span className="text-white opacity-40">"</span>
                 <span>Design should be</span>

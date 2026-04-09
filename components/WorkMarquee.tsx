@@ -150,7 +150,7 @@ const fadeUp = {
 
 const WorkMarquee: React.FC = React.memo(() => {
   return (
-    <section id="work" className="relative py-24 overflow-hidden border-t border-white/5 gpu">
+    <section id="work" className="relative py-16 md:py-24 overflow-hidden border-t border-white/5 gpu">
 
       {/* ─── Section header ─── */}
       <div className="mx-auto max-w-7xl px-6 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -158,7 +158,7 @@ const WorkMarquee: React.FC = React.memo(() => {
           <p className="text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-3">
             Selected Work
           </p>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white leading-tight">
             Proof over<br />
             <span className="text-gray-500">promises.</span>
           </h2>
@@ -170,14 +170,14 @@ const WorkMarquee: React.FC = React.memo(() => {
       </div>
 
       {/* ─── Marquee ─── */}
-      <div className="relative flex items-center mb-20 opacity-30 select-none grayscale">
+      <div className="relative flex items-center mb-12 md:mb-20 opacity-30 select-none grayscale">
         <MarqueeContent />
         <MarqueeContent />
       </div>
 
       {/* ─── Project grid ─── */}
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 md:mb-24">
           {projects.map((p, i) => (
             <motion.div
               key={p.title}
@@ -186,7 +186,7 @@ const WorkMarquee: React.FC = React.memo(() => {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeUp}
-              className={`group relative bg-[#0A0A0A] border border-white/[0.08] rounded-2xl p-10 md:p-14 transition-all duration-300 ${p.size}`}
+              className={`group relative bg-[#0A0A0A] border border-white/[0.08] rounded-2xl p-6 sm:p-10 md:p-14 transition-all duration-300 ${p.size}`}
             >
               <div className={`flex flex-col lg:flex-row h-full gap-10 ${p.size.includes('col-span-2') ? '' : 'flex-col'}`}>
                 
@@ -258,7 +258,7 @@ const WorkMarquee: React.FC = React.memo(() => {
         </div>
 
         {/* ─── Stats strip ─── */}
-        <div className="border-t border-white/5 pt-16 grid grid-cols-2 md:grid-cols-4 gap-12 mb-12">
+        <div className="border-t border-white/5 pt-12 md:pt-16 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
@@ -269,7 +269,7 @@ const WorkMarquee: React.FC = React.memo(() => {
               variants={fadeUp}
               className="flex flex-col gap-2"
             >
-              <span className="text-4xl md:text-5xl font-black tracking-tighter text-white">
+              <span className="text-3xl md:text-5xl font-black tracking-tighter text-white">
                 {s.value}
               </span>
               <span className="text-[10px] text-gray-500 uppercase tracking-[0.3em] font-medium">

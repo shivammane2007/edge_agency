@@ -68,7 +68,7 @@ const Hero3DCard = () => {
 
 const Hero: React.FC = () => {
   return (
-    <section id="hero" className="relative h-[100dvh] flex flex-col items-center justify-start text-center px-4 pt-[20vh] pb-10 overflow-hidden">
+    <section id="hero" className="relative h-[100dvh] flex flex-col items-center justify-start text-center px-4 pt-[15vh] md:pt-[20vh] pb-10 overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -91,18 +91,18 @@ const Hero: React.FC = () => {
         viewport={{ once: true }}
         className="relative z-10 gpu"
       >
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-tight">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] md:leading-tight">
           Design. Dev. Intelligence.
         </h1>
-        <p className="mt-6 max-w-xl mx-auto text-lg md:text-xl text-gray-400">
+        <p className="mt-4 md:mt-6 max-w-xl mx-auto text-base md:text-lg lg:text-xl text-gray-400">
           We build digital ecosystems for the future. A productized agency for teams that need to scale their design & development without the overhead.
         </p>
-        <div className="mt-10 flex items-center justify-center gap-4">
+        <div className="mt-8 md:mt-10 mb-12 sm:mb-0 flex flex-col sm:flex-row items-center justify-center gap-4">
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(255, 255, 255, 0.2)" }}
             whileTap={{ scale: 0.95 }}
             onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-6 py-3 font-semibold rounded-full bg-white text-black"
+            className="w-full sm:w-auto px-6 py-3 font-semibold rounded-full bg-white text-black"
           >
             View Pricing
           </motion.button>
@@ -110,14 +110,14 @@ const Hero: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-6 py-3 font-semibold rounded-full bg-black/50 backdrop-blur-sm ring-1 ring-white/10"
+            className="w-full sm:w-auto px-6 py-3 font-semibold rounded-full bg-black/50 backdrop-blur-sm ring-1 ring-white/10"
           >
             See Our Work
           </motion.button>
         </div>
       </motion.div>
       <motion.div
-        className="relative z-10 mt-auto mb-4 gpu scale-90 md:scale-100"
+        className="relative z-10 mt-auto mb-4 gpu scale-[0.7] sm:scale-90 md:scale-100"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}

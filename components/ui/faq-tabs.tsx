@@ -69,7 +69,7 @@ const FAQHeader: React.FC<{ title: string; subtitle: string }> = ({ title, subti
     <span className="mb-4 text-sm font-bold uppercase tracking-widest text-primary/60">
       {subtitle}
     </span>
-    <h2 className="mb-12 text-4xl md:text-6xl font-black tracking-tighter">{title}</h2>
+    <h2 className="mb-12 text-3xl sm:text-5xl md:text-6xl font-black tracking-tighter">{title}</h2>
     <div className="absolute -top-[350px] left-[50%] z-0 h-[500px] w-[600px] -translate-x-[50%] rounded-full bg-primary/5 blur-[120px]" />
   </div>
 );

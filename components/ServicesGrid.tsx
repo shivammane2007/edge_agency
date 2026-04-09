@@ -117,7 +117,7 @@ const ServicesGrid: React.FC = React.memo(() => {
               Capabilities
             </span>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
-              <h2 className="text-3xl md:text-7xl font-black tracking-tighter text-white leading-[1.1] md:leading-none">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white leading-[1.1] md:leading-none">
                 Elite solutions.<br />
                 <span className="text-gray-500">Edge perspective.</span>
               </h2>
@@ -130,10 +130,10 @@ const ServicesGrid: React.FC = React.memo(() => {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-8 md:auto-rows-fr">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-4 md:gap-8 lg:auto-rows-fr">
           
           {/* UI/UX Design - Large Focal Card */}
-          <SpotlightCard delay={1} className="md:col-span-2 md:row-span-2 flex flex-col justify-between min-h-[320px] md:min-h-[480px]">
+          <SpotlightCard delay={1} className="md:col-span-2 lg:row-span-2 flex flex-col justify-between min-h-[320px] md:min-h-[480px]">
             <div className="relative z-20">
               <div className="h-10 w-10 md:h-14 md:w-14 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center mb-6 md:mb-8 group-hover:scale-110 transition-transform duration-500">
                 <Layout className="w-5 h-5 md:w-7 md:h-7 text-white" />
@@ -170,7 +170,7 @@ const ServicesGrid: React.FC = React.memo(() => {
           </SpotlightCard>
 
           {/* AI Engineering - Wide Card */}
-          <SpotlightCard delay={2} className="md:col-span-2 md:row-span-1 flex flex-col justify-between min-h-0">
+          <SpotlightCard delay={2} className="md:col-span-2 lg:row-span-1 flex flex-col justify-between min-h-0">
             <div className="flex justify-between items-start relative z-20">
               <div>
                 <div className="h-10 w-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4 md:mb-6 group-hover:rotate-12 transition-transform duration-500">
@@ -206,7 +206,7 @@ const ServicesGrid: React.FC = React.memo(() => {
           </SpotlightCard>
 
           {/* Engineering - Tall/Small Card */}
-          <SpotlightCard delay={3} className="md:col-span-1 md:row-span-1 flex flex-col justify-between min-h-0">
+          <SpotlightCard delay={3} className="md:col-span-1 flex flex-col justify-between min-h-0">
             <div className="relative z-20">
               <Terminal className="w-5 h-5 text-emerald-400 mb-4 md:mb-6" />
               <h3 className="text-lg md:text-xl font-black tracking-tight text-white mb-2">
@@ -226,7 +226,7 @@ const ServicesGrid: React.FC = React.memo(() => {
           </SpotlightCard>
 
           {/* Growth - Small Card */}
-          <SpotlightCard delay={4} className="md:col-span-1 md:row-span-1 flex flex-col justify-between min-h-0">
+          <SpotlightCard delay={4} className="md:col-span-1 flex flex-col justify-between min-h-0">
             <div className="relative z-20">
               <BarChart3 className="w-5 h-5 text-blue-400 mb-4 md:mb-6" />
               <h3 className="text-lg md:text-xl font-black tracking-tight text-white mb-2">

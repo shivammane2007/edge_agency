@@ -170,14 +170,14 @@ export default React.memo(function Pricing() {
   return (
     <section 
       id="pricing"
-      className="px-4 py-32 max-w-7xl mx-auto relative overflow-hidden gpu"
+      className="px-4 py-16 md:py-24 lg:py-32 max-w-7xl mx-auto relative overflow-hidden gpu"
       ref={pricingRef}
     >
       {/* Decorative Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-[120px] pointer-events-none rounded-full" />
 
-      <article className="text-center mb-20 space-y-6 mx-auto">
-        <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-white">
+      <article className="text-center mb-12 md:mb-20 space-y-6 mx-auto">
+        <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter text-white">
           <VerticalCutReveal
             splitBy="words"
             staggerDuration={0.1}
@@ -193,7 +193,7 @@ export default React.memo(function Pricing() {
           animationNum={0}
           timelineRef={pricingRef}
           customVariants={revealVariants}
-          className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-medium"
+          className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto font-medium"
         >
           Elite design, development, and AI engineering at a flat monthly rate. 
           No surprises, just results.
@@ -210,7 +210,7 @@ export default React.memo(function Pricing() {
         </TimelineContent>
       </article>
 
-      <div className="grid md:grid-cols-3 gap-8 py-6 relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-6 relative z-10">
         {plans.map((plan, index) => (
           <TimelineContent
             key={plan.name}

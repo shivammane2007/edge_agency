@@ -11,7 +11,7 @@ const ParallaxImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
   const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   return (
-    <div ref={ref} className="relative h-[500px] overflow-hidden rounded-3xl ring-1 ring-white/10 gpu">
+    <div ref={ref} className="relative h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden rounded-3xl ring-1 ring-white/10 gpu">
       <motion.img
         src={src}
         alt={alt}

@@ -46,7 +46,7 @@ export default function Footer() {
 
       {/* ── Top CTA Band ── */}
       <div className="border-b border-white/5">
-        <div className="mx-auto max-w-7xl px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mx-auto max-w-7xl px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-3">
               <Zap className="w-6 h-6 text-white" />
@@ -66,7 +66,7 @@ export default function Footer() {
       </div>
 
       {/* ── Main Grid ── */}
-      <div className="mx-auto max-w-7xl px-6 py-12 grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div className="mx-auto max-w-7xl px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10">
 
         {/* Brand Column */}
         <div className="md:col-span-4 flex flex-col gap-5">
@@ -107,7 +107,7 @@ export default function Footer() {
         </div>
 
         {/* Nav Columns */}
-        <div className="md:col-span-5 grid grid-cols-3 gap-6">
+        <div className="md:col-span-12 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 gap-6">
           {[
             {
               title: "Agency",
