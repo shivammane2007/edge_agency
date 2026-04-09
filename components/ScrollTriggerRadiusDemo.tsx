@@ -6,7 +6,7 @@ import {
 
 export default function ScrollTriggerRadiusDemo() {
   return (
-    <section className="py-32 bg-[#0A0A0A] overflow-hidden gpu">
+    <section className="relative py-32 bg-[#0A0A0A] overflow-hidden gpu">
       <div className="container mx-auto px-6 mb-16">
         <div className="max-w-xl">
           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 mb-4 block">

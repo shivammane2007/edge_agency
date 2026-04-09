@@ -105,7 +105,7 @@ const FAQTabs: React.FC<FAQTabsProps> = ({ categories, selected, setSelected }) 
 );
 
 const FAQList: React.FC<FAQListProps> = ({ faqData, selected }) => (
-  <div className="mx-auto mt-16 max-w-3xl">
+  <div className="relative mx-auto mt-16 max-w-3xl">
     <AnimatePresence mode="wait">
       {Object.entries(faqData).map(([category, questions]: [string, FAQItemProps[]]) => {
         if (selected === category) {

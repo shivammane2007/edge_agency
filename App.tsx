@@ -21,33 +21,20 @@ const App: React.FC = () => {
 
   useEffect(() => {
     document.documentElement.classList.add('dark');
-
-    // Remove manual smooth scroll as Lenis handles it better
-    /*
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId) {
-          document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-    */
   }, []);
 
   return (
-    <>
+    <div className="relative min-h-screen overflow-x-hidden">
       <AnimatePresence>
         {contactOpen && (
           <ContactPage onClose={() => setContactOpen(false)} />
         )}
       </AnimatePresence>
 
-      <div className="bg-[#0A0A0A] text-white transition-colors duration-500">
+      <div className="relative bg-[#0A0A0A] text-white transition-colors duration-500">
         <div className="fixed inset-0 z-[-1] bg-grid-pattern-dark" />
         <Header onOpenContact={() => setContactOpen(true)} />
-        <main>
+        <main className="relative">
           <Hero />
           <WorkMarquee />
           <ServicesGrid />
@@ -59,7 +46,7 @@ const App: React.FC = () => {
         </main>
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 

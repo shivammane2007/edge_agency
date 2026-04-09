@@ -150,7 +150,7 @@ const fadeUp = {
 
 const WorkMarquee: React.FC = React.memo(() => {
   return (
-    <section id="work" className="py-24 overflow-hidden border-t border-white/5 gpu">
+    <section id="work" className="relative py-24 overflow-hidden border-t border-white/5 gpu">
 
       {/* ─── Section header ─── */}
       <div className="mx-auto max-w-7xl px-6 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">

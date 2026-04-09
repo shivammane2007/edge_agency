@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export const QuoteSection = React.memo(() => {
   return (
-    <section className="py-24 bg-[#0A0A0A] overflow-hidden gpu">
+    <section className="relative py-24 bg-[#0A0A0A] overflow-hidden gpu">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}

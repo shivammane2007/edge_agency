@@ -68,7 +68,7 @@ const Hero3DCard = () => {
 
 const Hero: React.FC = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32 pb-16 overflow-hidden">
+    <section id="hero" className="relative h-[100dvh] flex flex-col items-center justify-between text-center px-4 pt-[12vh] pb-10 overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -76,11 +76,12 @@ const Hero: React.FC = () => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-20 gpu"
+          className="w-full h-full object-cover opacity-10 gpu"
         >
           <source src="/videos/galaxy.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-80" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] opacity-70" />
       </div>
       
       <motion.div
@@ -116,7 +117,7 @@ const Hero: React.FC = () => {
         </div>
       </motion.div>
       <motion.div
-        className="relative z-10 mt-20 gpu"
+        className="relative z-10 mt-auto mb-10 gpu scale-90 md:scale-100"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
