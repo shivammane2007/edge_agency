@@ -11,9 +11,13 @@ import Footer from './components/Footer';
 import ContactPage from './components/Contact';
 import QuoteSection from './components/QuoteSection';
 import ScrollTriggerRadiusDemo from './components/ScrollTriggerRadiusDemo';
+import { useSmoothScroll } from './components/ui/scroll-trigger-animations';
 
 const App: React.FC = () => {
   const [contactOpen, setContactOpen] = useState(false);
+  
+  // Initialize global smooth scroll
+  useSmoothScroll();
 
   useEffect(() => {
     document.documentElement.classList.add('dark');

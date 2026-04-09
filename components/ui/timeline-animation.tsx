@@ -45,7 +45,7 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
       variants={customVariants || defaultVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className={className}
+      className={`${className} gpu`}
     >
       {children}
     </Component>
