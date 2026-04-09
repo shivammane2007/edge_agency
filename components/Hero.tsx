@@ -68,7 +68,7 @@ const Hero3DCard = () => {
 
 const Hero: React.FC = () => {
   return (
-    <section id="hero" className="relative h-[100dvh] flex flex-col items-center justify-between text-center px-4 pt-[12vh] pb-10 overflow-hidden">
+    <section id="hero" className="relative h-[100dvh] flex flex-col items-center justify-start text-center px-4 pt-[20vh] pb-10 overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -117,7 +117,7 @@ const Hero: React.FC = () => {
         </div>
       </motion.div>
       <motion.div
-        className="relative z-10 mt-auto mb-10 gpu scale-90 md:scale-100"
+        className="relative z-10 mt-auto mb-4 gpu scale-90 md:scale-100"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
