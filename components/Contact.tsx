@@ -115,11 +115,11 @@ export default function ContactPage({ onClose }: ContactPageProps) {
         }
       `}</style>
       {/* ── Background Infrastructure ── */}
-      <div className="fixed inset-0 pointer-events-none isolate">
+      <div className="fixed inset-0 pointer-events-none z-0">
         <DotPattern 
           width={12} 
           height={12} 
-          className="fill-white/[0.02] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" 
+          className="fill-white/[0.03] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" 
         />
         {/* Corner drafting marks for the whole screen viewport */}
         <div className="absolute left-8 top-8 w-12 h-12 border-l border-t border-white/10" />
@@ -136,7 +136,7 @@ export default function ContactPage({ onClose }: ContactPageProps) {
         <X className="h-3.5 w-3.5" /> Close
       </button>
 
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen relative z-10">
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 flex-1 flex flex-col">
         <AnimatePresence mode="wait">
           {step === "success" ? (
