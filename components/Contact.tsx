@@ -106,6 +106,7 @@ export default function ContactPage({ onClose }: ContactPageProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[9999] bg-[#060606] overflow-y-auto selection:bg-white selection:text-black no-scrollbar"
+      data-lenis-prevent
       style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
     >
       <style>{`
@@ -135,7 +136,8 @@ export default function ContactPage({ onClose }: ContactPageProps) {
         <X className="h-3.5 w-3.5" /> Close
       </button>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 min-h-screen flex flex-col justify-center">
+      <div className="flex flex-col min-h-screen">
+        <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 flex-1 flex flex-col">
         <AnimatePresence mode="wait">
           {step === "success" ? (
             <motion.div
@@ -355,6 +357,7 @@ export default function ContactPage({ onClose }: ContactPageProps) {
           </div>
         </div>
       </footer>
+    </div>
     </motion.div>
   );
 }
