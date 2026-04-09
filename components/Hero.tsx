@@ -99,6 +99,7 @@ const Hero: React.FC = () => {
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(255, 255, 255, 0.2)" }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-6 py-3 font-semibold rounded-full bg-white text-black"
           >
             View Pricing
@@ -106,6 +107,7 @@ const Hero: React.FC = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-6 py-3 font-semibold rounded-full bg-black/50 backdrop-blur-sm ring-1 ring-white/10"
           >
             See Our Work
