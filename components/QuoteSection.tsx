@@ -4,14 +4,14 @@ import React from "react";
 import DotPattern from "@/components/ui/dot-pattern-1";
 import { motion } from "framer-motion";
 
-export function QuoteSection() {
+export const QuoteSection = React.memo(() => {
   return (
-    <section className="py-24 bg-[#0A0A0A] overflow-hidden">
+    <section className="py-24 bg-[#0A0A0A] overflow-hidden gpu">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative flex flex-col items-center border border-white/10 rounded-[2rem] overflow-hidden bg-gradient-to-b from-white/[0.02] to-transparent"
         >
@@ -67,6 +67,6 @@ export function QuoteSection() {
       </div>
     </section>
   );
-}
+});
 
 export default QuoteSection;

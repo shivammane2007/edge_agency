@@ -35,3 +35,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .gpu {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+}

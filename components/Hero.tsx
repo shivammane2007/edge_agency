@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-20 gpu"
         >
           <source src="/videos/galaxy.mp4" type="video/mp4" />
         </video>
@@ -87,7 +87,8 @@ const Hero: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative z-10"
+        viewport={{ once: true }}
+        className="relative z-10 gpu"
       >
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-tight">
           Design. Dev. Intelligence.
@@ -115,10 +116,11 @@ const Hero: React.FC = () => {
         </div>
       </motion.div>
       <motion.div
-        className="relative z-10 mt-20"
+        className="relative z-10 mt-20 gpu"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+        viewport={{ once: true }}
       >
         <Hero3DCard />
       </motion.div>

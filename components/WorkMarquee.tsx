@@ -148,9 +148,9 @@ const fadeUp = {
   }),
 };
 
-const WorkMarquee: React.FC = () => {
+const WorkMarquee: React.FC = React.memo(() => {
   return (
-    <section id="work" className="py-24 overflow-hidden border-t border-white/5">
+    <section id="work" className="py-24 overflow-hidden border-t border-white/5 gpu">
 
       {/* ─── Section header ─── */}
       <div className="mx-auto max-w-7xl px-6 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -184,7 +184,7 @@ const WorkMarquee: React.FC = () => {
               custom={i}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: true, margin: "-100px" }}
               variants={fadeUp}
               className={`group relative bg-[#0A0A0A] border border-white/[0.08] rounded-2xl p-10 md:p-14 transition-all duration-300 ${p.size}`}
             >
@@ -265,7 +265,7 @@ const WorkMarquee: React.FC = () => {
               custom={i}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               variants={fadeUp}
               className="flex flex-col gap-2"
             >
@@ -282,6 +282,6 @@ const WorkMarquee: React.FC = () => {
 
     </section>
   );
-};
+});
 
 export default WorkMarquee;

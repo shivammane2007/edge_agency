@@ -33,38 +33,43 @@ const defaultOptions: UseSmoothScrollOptions = {
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 };
 
+let globalLenis: Lenis | null = null;
+let rafId: number | null = null;
+
+function startGlobalRaf() {
+  if (rafId) return;
+  const raf = (time: number) => {
+    globalLenis?.raf(time);
+    rafId = requestAnimationFrame(raf);
+  };
+  rafId = requestAnimationFrame(raf);
+}
+
 export function useSmoothScroll(options: UseSmoothScrollOptions = {}) {
-  const lenisRef = React.useRef<Lenis | null>(null);
-
   React.useEffect(() => {
-    const mergedOptions = { ...defaultOptions, ...options };
-
-    lenisRef.current = new Lenis({
-      duration: mergedOptions.duration,
-      lerp: mergedOptions.lerp,
-      smoothWheel: mergedOptions.smoothWheel,
-      touchMultiplier: mergedOptions.touchMultiplier,
-      infinite: mergedOptions.infinite,
-      orientation: mergedOptions.orientation,
-      gestureOrientation: mergedOptions.gestureOrientation,
-      easing: mergedOptions.easing,
-    });
-
-    function raf(time: number) {
-      lenisRef.current?.raf(time);
-      requestAnimationFrame(raf);
+    if (!globalLenis) {
+      const mergedOptions = { ...defaultOptions, ...options };
+      globalLenis = new Lenis({
+        duration: mergedOptions.duration,
+        lerp: mergedOptions.lerp,
+        smoothWheel: mergedOptions.smoothWheel,
+        touchMultiplier: mergedOptions.touchMultiplier,
+        infinite: mergedOptions.infinite,
+        orientation: mergedOptions.orientation,
+        gestureOrientation: mergedOptions.gestureOrientation,
+        easing: mergedOptions.easing,
+      });
+      startGlobalRaf();
     }
 
-    requestAnimationFrame(raf);
-
     return () => {
-      lenisRef.current?.destroy();
-      lenisRef.current = null;
+      // In a single-page context, we usually keep Lenis alive.
+      // If we really need to destroy, we'd handle it here.
     };
   }, [options]);
 
   return {
-    lenis: lenisRef.current,
+    lenis: globalLenis,
   };
 }
 
@@ -120,7 +125,7 @@ export function ContainerScrollInsetX({
   return (
     <motion.div
       className={className}
-      style={{ clipPath, ...style }}
+      style={{ clipPath, willChange: 'clip-path', ...style }}
       {...props}
     />
   );
@@ -138,7 +143,7 @@ export function ContainerScrollInsetY({
   return (
     <motion.div
       className={className}
-      style={{ clipPath, ...style }}
+      style={{ clipPath, willChange: 'clip-path', ...style }}
       {...props}
     />
   );
@@ -171,7 +176,7 @@ export function ContainerScrollInset({
   return (
     <motion.div
       className={className}
-      style={{ clipPath, ...style }}
+      style={{ clipPath, willChange: 'clip-path', ...style }}
       {...props}
     />
   );
@@ -222,9 +227,8 @@ export function ContainerScrollRadius({
   const borderRadius = useTransform(scrollYProgress, inputRange, (radiusRange as number[]));
   return (
     <motion.div
-      layout
       className={className}
-      style={{ borderRadius, ...style }}
+      style={{ borderRadius, willChange: 'border-radius', ...style }}
       {...props}
     />
   );

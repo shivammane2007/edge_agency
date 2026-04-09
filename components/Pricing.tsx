@@ -142,7 +142,7 @@ const PricingSwitch = ({
   );
 };
 
-export default function Pricing() {
+export default React.memo(function Pricing() {
   const [isYearly, setIsYearly] = useState(false);
   const pricingRef = useRef<HTMLDivElement>(null);
 
@@ -170,7 +170,7 @@ export default function Pricing() {
   return (
     <section 
       id="pricing"
-      className="px-4 py-32 max-w-7xl mx-auto relative overflow-hidden"
+      className="px-4 py-32 max-w-7xl mx-auto relative overflow-hidden gpu"
       ref={pricingRef}
     >
       {/* Decorative Glow */}
@@ -294,4 +294,4 @@ export default function Pricing() {
       </div>
     </section>
   );
-}
+});

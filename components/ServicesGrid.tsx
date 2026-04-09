@@ -98,9 +98,9 @@ const SpotlightCard: React.FC<{
   );
 };
 
-const ServicesGrid: React.FC = () => {
+const ServicesGrid: React.FC = React.memo(() => {
   return (
-    <section id="services" className="relative py-16 md:py-32 overflow-hidden bg-[#0A0A0A]">
+    <section id="services" className="relative py-16 md:py-32 overflow-hidden bg-[#0A0A0A] gpu">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-white/[0.02] blur-[80px] md:blur-[120px] rounded-full pointer-events-none" />
       
@@ -110,7 +110,7 @@ const ServicesGrid: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="flex flex-col gap-4"
           >
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">
@@ -241,18 +241,21 @@ const ServicesGrid: React.FC = () => {
                <motion.div 
                  initial={{ scaleY: 0.2 }}
                  whileInView={{ scaleY: 1 }}
+                 viewport={{ once: true }}
                  transition={{ duration: 1, delay: 0.5 }}
                  className="flex-1 h-8 md:h-10 bg-white/5 rounded-sm origin-bottom" 
                />
                <motion.div 
                  initial={{ scaleY: 0.4 }}
                  whileInView={{ scaleY: 0.8 }}
+                 viewport={{ once: true }}
                  transition={{ duration: 1, delay: 0.6 }}
                  className="flex-1 h-12 md:h-14 bg-white/10 rounded-sm origin-bottom" 
                />
                <motion.div 
                  initial={{ scaleY: 0.1 }}
                  whileInView={{ scaleY: 1.2 }}
+                 viewport={{ once: true }}
                  transition={{ duration: 1, delay: 0.7 }}
                  className="flex-1 h-10 md:h-12 bg-white/20 rounded-sm origin-bottom" 
                />
@@ -263,6 +266,6 @@ const ServicesGrid: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
 export default ServicesGrid;
