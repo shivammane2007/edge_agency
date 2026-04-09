@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 
-const Hero3DCard = () => {
+const Hero3DCard = React.memo(() => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -63,20 +63,21 @@ const Hero3DCard = () => {
       ></motion.div>
     </motion.div>
   );
-};
+});
 
 
-const Hero: React.FC = () => {
+const Hero: React.FC = React.memo(() => {
   return (
-    <section id="hero" className="relative h-[100dvh] flex flex-col items-center justify-start text-center px-4 pt-[15vh] md:pt-[20vh] pb-10 overflow-hidden">
+    <section id="hero" className="relative h-[100dvh] flex flex-col items-center justify-start text-center px-4 pt-[15vh] md:pt-[20vh] pb-10 overflow-hidden gpu">
       {/* Video Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 select-none pointer-events-none">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-10 gpu"
+          preload="auto"
+          className="w-full h-full object-cover opacity-10 gpu will-change-transform"
         >
           <source src="/videos/galaxy.mp4" type="video/mp4" />
         </video>
@@ -119,14 +120,14 @@ const Hero: React.FC = () => {
       <motion.div
         className="relative z-10 mt-auto mb-4 gpu scale-[0.7] sm:scale-90 md:scale-100"
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
       >
         <Hero3DCard />
       </motion.div>
     </section>
   );
-};
+});
 
 export default Hero;

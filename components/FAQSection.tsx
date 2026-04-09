@@ -1,7 +1,7 @@
 import React from 'react';
 import { FAQ } from './ui/faq-tabs';
 
-const FAQSection: React.FC = () => {
+const FAQSection: React.FC = React.memo(() => {
   const categories = {
     "process": "Our Process",
     "services": "Services", 
@@ -65,6 +65,6 @@ const FAQSection: React.FC = () => {
       faqData={faqData}
     />
   );
-};
+});
 
 export default FAQSection;
